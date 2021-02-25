@@ -15,12 +15,7 @@ local Keys = {
 	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
-end)
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 function drawTxt(x,y, width, height, scale, text, r,g,b,a, outline)
 	SetTextFont(0)
