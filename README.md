@@ -1,2 +1,2 @@
 # eric_holdupjob
-Eric holdup job
+使用esx_holdup改寫的搶劫公職，嚴禁拿去進行任何商業行為
