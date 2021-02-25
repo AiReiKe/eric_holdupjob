@@ -8,7 +8,7 @@ Config.Marker = {
 }
 
 Config.PoliceNumberRequired = 2 --若 call_police 為 true 時, 所需在線警察數
-Config.TimerBeforeNewRob    = 600 -- 搶劫完成/取消後商店的冷卻時間計時器（以秒為單位）
+Config.TimerBeforeNewRob    = 600 -- 搶劫完成/取消後的冷卻時間計時器（以秒為單位）
 Config.MaxDistance    = 20   -- 與搶劫光圈能離的最大距離，再更遠將取消搶劫
 
 Config.NegativeSociety = false --公庫沒錢時是否能繼續搶
