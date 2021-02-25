@@ -19,7 +19,7 @@ Config.GiveBlackMoney = false -- 是否給黑錢？如果false，它將提供現
 Stores = {
 	["mafia"] = {
 		position = { x = 28.16, y = 537.8, z = 176.02 },
-		reward = math.random(10000000, 10000000), --可搶到金額
+		reward = math.random(1000000, 2000000), --可搶到金額
 		nameOfJob = "黑豹會",
 		secondsRemaining = 180, -- seconds
 		lastRobbed = 0,
