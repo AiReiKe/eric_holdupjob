@@ -154,6 +154,6 @@ end)
 
 
 print('##################################')
-print('\nCreate by AiReiKe')
+print('\nE by AiReiKe')
 print('Thanks for using eric_holdupjob')
 print('\n##################################')
