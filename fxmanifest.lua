@@ -4,7 +4,7 @@ game 'gta5'
 
 description 'Eric Holdup Job'
 
-version '1.1.0'
+version '1.0.0'
 
 client_scripts {
 	'@es_extended/locale.lua',
