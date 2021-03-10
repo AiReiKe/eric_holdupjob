@@ -21,7 +21,7 @@ Stores = {
 		position = { x = 28.16, y = 537.8, z = 176.02 },
 		reward = math.random(1000000, 2000000), --可搶到金額
 		nameOfJob = "黑豹會",
-		secondsRemaining = 180, -- seconds
+		secondsRemaining = 180, -- 觸發到拿到錢過多久，單位: seconds
 		lastRobbed = 0,
 		job = 'mafia',
 		online_player = 0, --所需在線成員數量
