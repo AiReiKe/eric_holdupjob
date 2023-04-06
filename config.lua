@@ -1,6 +1,8 @@
 Config = {}
 Config.Locale = 'tw'
 
+Config.oldESX = false	-- ESX 1.1/1.2
+
 Config.Marker = {
 	r = 250, g = 0, b = 0, a = 100,
 	x = 1.0, y = 1.0, z = 1.5,
@@ -19,9 +21,9 @@ Config.GiveBlackMoney = false -- 是否給黑錢？如果false，它將提供現
 Stores = {
 	["mafia"] = {
 		position = { x = 28.16, y = 537.8, z = 176.02 },
-		reward = math.random(1000000, 2000000), --可搶到金額
+		reward = math.random(10000000, 10000000), --可搶到金額
 		nameOfJob = "黑豹會",
-		secondsRemaining = 180, -- 觸發到拿到錢過多久，單位: seconds
+		secondsRemaining = 180, -- seconds
 		lastRobbed = 0,
 		job = 'mafia',
 		online_player = 0, --所需在線成員數量
