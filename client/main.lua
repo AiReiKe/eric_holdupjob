@@ -1,7 +1,6 @@
 local holdingUp = false
 local store = ""
 local blipRobbery = nil
-ESX = nil
 
 local Keys = {
 	["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57,
@@ -15,9 +14,33 @@ local Keys = {
 	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+if Config.oldESX then
+	ESX = nil
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-function drawTxt(x,y, width, height, scale, text, r,g,b,a, outline)
+	Citizen.CreateThread(function()
+		if ESX.IsPlayerLoaded() then
+			ESX.PlayerData = ESX.GetPlayerData()
+		end
+	end)
+
+	RegisterNetEvent("esx:playerLoaded")
+	AddEventHandler("esx:playerLoaded", function(xPlayer)
+		ESX.PlayerData = xPlayer
+	end)
+
+	RegisterNetEvent("esx:onPlayerLogout")
+	AddEventHandler("esx:onPlayerLogout", function()
+		ESX.PlayerData = nil
+	end)
+
+	RegisterNetEvent("esx:setJob")
+	AddEventHandler("esx:setJob", function(job)
+		ESX.PlayerData.job = job
+	end)
+end
+
+local function drawTxt(x,y, width, height, scale, text, r,g,b,a, outline)
 	SetTextFont(0)
 	SetTextProportional(0)
 	SetTextScale(scale, scale)
@@ -109,7 +132,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1)
 		local playerPos = GetEntityCoords(PlayerPedId(), true)
-		local xPlayer = ESX.GetPlayerData()
+		local inZone = false
 
 		for k,v in pairs(Stores) do
 			local storePos = v.position
@@ -117,7 +140,8 @@ Citizen.CreateThread(function()
 
 			if distance < Config.Marker.DrawDistance then
 				if not holdingUp then
-					if xPlayer.job.name ~= v.job or Config.member_holdup == true then
+					if ESX.PlayerData.job.name ~= v.job or Config.member_holdup then
+						inZone = true
 						DrawMarker(Config.Marker.Type, storePos.x, storePos.y, storePos.z - 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Marker.x, Config.Marker.y, Config.Marker.z, Config.Marker.r, Config.Marker.g, Config.Marker.b, Config.Marker.a, false, false, 2, false, false, false, false)
 
 						if distance < 0.5 then
@@ -141,6 +165,10 @@ Citizen.CreateThread(function()
 			if Vdist(playerPos.x, playerPos.y, playerPos.z, storePos.x, storePos.y, storePos.z) > Config.MaxDistance then
 				TriggerServerEvent('eric_holdupjob:tooFar', store)
 			end
+		end
+
+		if not inZone then
+			Wait(500)
 		end
 	end
 end)
