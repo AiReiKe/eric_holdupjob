@@ -1,8 +1,10 @@
 local rob = false
 local robbers = {}
-ESX = nil
 
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+if Config.oldESX then
+	ESX = nil
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+end
 
 RegisterServerEvent('eric_holdupjob:tooFar')
 AddEventHandler('eric_holdupjob:tooFar', function(currentStore)
@@ -150,10 +152,4 @@ end)
 
 
 
-
-
-
-print('##################################')
-print('\nEdit by AiReiKe')
-print('Thanks for using eric_holdupjob')
-print('\n##################################')
+print('Thanks for using eric_holdupjob which edited by AiReiKe')
